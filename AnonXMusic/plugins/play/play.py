@@ -661,3 +661,18 @@ async def slider_queries(client, CallbackQuery, _):
         return await CallbackQuery.edit_message_media(
             media=med, reply_markup=InlineKeyboardMarkup(buttons)
         )
+if not await is_served_user(message.from_user.id):
+        await message.reply_text(
+            text="Error, You're Not A Verified User\nPlease Click On The Below Button To Verify Yourself .",
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton(
+                            text="Click For play or verify here",
+                            url=f"https://t.me/{app.username}?start=verify",
+                        )
+                    ]
+                ]
+            ),
+        )
+        return
